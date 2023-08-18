@@ -1,10 +1,20 @@
-from django.shortcuts import render, HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render 
 
 author = {'Имя' : 'Иван',
-          'Фамилия':'Иванов'
-
+          'Отчество' : 'Петрович',
+          'Фамилия':'Иванов',
+          'телефон': '8-923-600-01-02',
+          'email' : 'vasya@mail.ru'
  }
 
+items = [
+   {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
+   {"id": 2, "name": "Куртка кожаная" ,"quantity":2},
+   {"id": 5, "name": "Coca-cola 1 литр" ,"quantity":12},
+   {"id": 7, "name": "Картофель фри" ,"quantity":0},
+   {"id": 8, "name": "Кепка" ,"quantity":124},
+]
 
 
 # Create your views here.
@@ -16,7 +26,30 @@ def home(request):
 
 def about(request):
     result = f"""
-            <b>Имя:</b> <b>{author['Имя']}<b><br>
-            <strong>Фамилия:</strong> <b>{author['Фамилия']}<b><br>
+            Имя: <b>{author['Имя']}</b><br>
+            Отчество: <b>{author['Отчество']}</b><br>
+            Фамилия: <b>{author['Фамилия']}</b><br>
+            Телефон: <b>{author['телефон']}</b><br>
+            email: <b>{author['email']}</b><br>
+
     """
     return HttpResponse(result)
+
+def get_item(request, id):
+    for item in items:
+        if item['id'] == id:
+            result = f"""
+            Название товара: <b>{item['name']}</b><br>
+            Количество: <b>{item['quantity']}</b><br>
+            """
+            return HttpResponse(result)
+    return HttpResponseNotFound(f"Товар с id {id} не найден!")
+
+def get_items(request):
+    for item in items:
+        if item['id'] == id:
+            result = f"""
+            Название товара: <b>{item['name']}</b><br>
+            Количество: <b>{item['quantity']}</b><br>
+            """
+            return HttpResponse(result)
