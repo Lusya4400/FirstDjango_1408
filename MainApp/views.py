@@ -19,10 +19,15 @@ items = [
 
 # Create your views here.
 def home(request):
-    text = """<h1>"Изучаем django"</h1>
-              <strong>Автор</strong>: <i>Усачева Л.В.  + Катя Галкина</i>
-           """
-    return HttpResponse(text)
+#    text = """<h1>"Изучаем django"</h1>
+#              <strong>Автор</strong>: <i>Усачева Л.В.  + Катя Галкина</i>
+#           """
+#    return HttpResponse(text)
+    context = {
+         "name" : "Петров Петр Петрович",
+         "email" : "my_mail@mail.ru"
+    }
+    return render(request, "index.html", context)
 
 def about(request):
     result = f"""
@@ -47,10 +52,14 @@ def get_item(request, id):
     return HttpResponseNotFound(f"Товар с id {id} не найден!")
 
 def get_items(request):
-    result = "<h2>Список товаров</h2><ol>"
-    for item in items:
-            result += f"""
-            <li><a href="/item/{item['id']}">{item['name']}</a></li>
-            """
-    result += '</ol>'
-    return HttpResponse(result)
+#    result = "<h2>Список товаров</h2><ol>"
+#    for item in items:
+#            result += f"""
+#            <li><a href="/item/{item['id']}">{item['name']}</a></li>
+#            """
+#    result += '</ol>'
+#    return HttpResponse(result)
+    context = {
+        "items" : items
+    }
+    return render(request, "items_list.html", context)

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Start page</title>
+</head>
+<body>
+    {% for item in items %}
+        <li>Имя: <a href="/item/{{item.id}}">{{item.name}}</a>, Количество: {{item.quantity}}</li>
+    {% endfor %}
+
+</body>
+</html>
