@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Item page</title>
+</head>
+<body>
+    <header>
+        <a href ='/'> Home </a> / <a href ='/items'> Items </a> / <a href ='/about'> About </a>
+    </header>
+    <h1>{{item.name}}</h1>
+    <p>{{item.brand}}</p>
+    <div>
+        Количество: {{item.count | default:'Товар отсутствует на складе'}}
+        <!-- {% if item.count == 0 %} Товар отсутствует
+        {% else %} Количество: {{item.count}} -->
+        <p>Описание товара: {{item.descript}}</p>
+        <!-- {% endif %} -->
+    </div>
+    <p><a href="/items"</a> Вернуться к списку товаров </p>
+</body>
+</html>
